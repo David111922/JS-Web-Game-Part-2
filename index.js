@@ -8,13 +8,12 @@ function newImage(url, left, bottom){
     return object
 }
 
-function newItem(url, left, bottom){
-    let item = newImage(url, left, bottom)
-}
+//let inventory must be in scope  so it can see document//
+
+let inventory = document.createElement('div')
 
 function newInventory(){
-    let inventory = document.createElement('div')
-    inventory.style.position = 'fixed'
+ inventory.style.position = 'fixed'
     inventory.style.bottom = '0px';
     inventory.style.left = '0px'
     inventory.style.width = '100%'
@@ -35,6 +34,21 @@ newImage('assets/pillar.png', 350, 250)
 newImage('assets/pine-tree.png', 450, 350)
 newImage('assets/crate.png', 150, 350)
 newImage('assets/well.png', 500, 575)
+
+
+function newItem(url, left, bottom){
+    let item = newImage(url, left, bottom)
+    item.addEventListener('click', function(){
+        item.remove()
+        let inventoryItem = document.createElement('img')
+        inventoryItem.src = url
+        inventory.append(inventoryItem)
+    })
+}
+
+
+
+
 
 newItem('assets/sword.png', 500, 555)
 newItem('assets/shield.png', 165, 335)
